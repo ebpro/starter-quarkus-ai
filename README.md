@@ -19,7 +19,7 @@ To ensure data privacy and fast iteration without API costs, we will use **Ollam
 * **Linux:** Run the standard install script:
   
 ```bash
-curl -fsSL [https://ollama.com/install.sh](https://ollama.com/install.sh) | sh
+curl -fsSL curl -fsSL https://ollama.com/install.sh | sh | sh
 ```
 
 **2. Pull the Workshop Model**
