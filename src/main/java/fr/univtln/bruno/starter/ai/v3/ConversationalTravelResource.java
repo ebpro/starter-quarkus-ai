@@ -22,15 +22,15 @@ import org.jboss.logging.Logger;
  * not a structured data API (like V2 TravelPlan).
  */
 @Path("/api/v3/chat")
-public class ChatResource {
+public class ConversationalTravelResource {
 
-    private static final Logger LOG = Logger.getLogger(ChatResource.class);
+    private static final Logger LOG = Logger.getLogger(ConversationalTravelResource.class);
 
     /**
      * AI service with automatic memory management.
      */
     @Inject
-    ChatAi ai;
+    ConversationalTravelAi ai;
 
     /**
      * Sends a message to a conversational AI.

@@ -19,13 +19,13 @@ import jakarta.ws.rs.core.MediaType;
  */
 @Path("/api/v1/travel")
 @Produces(MediaType.TEXT_PLAIN)
-public class MyAIResource {
+public class BasicTravelResource {
 
     /**
      * AI service used to generate travel plans as JSON text.
      */
     @Inject
-    MyAiService aiService;
+    BasicTravelAi aiService;
 
     /**
      * Calls the LLM and returns a travel plan as raw JSON text.

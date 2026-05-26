@@ -29,7 +29,7 @@ import io.quarkiverse.langchain4j.RegisterAiService;
     - Never omit any field
     - Generate realistic, varied activities and local food
     """)
-public interface TravelPlannerAi {
+public interface StatefulTravelAi {
 
     /**
      * Generates a structured travel plan.

@@ -42,7 +42,7 @@ import io.quarkiverse.langchain4j.ToolBox;
     - itinerary: must contain exactly the requested number of day entries
     - Each DayPlan must have a non-empty activities list and a non-null food field
     """)
-public interface TravelPlannerAi {
+public interface AgenticTravelAi {
 
     /**
      * Plans a multi-day itinerary for a given destination.

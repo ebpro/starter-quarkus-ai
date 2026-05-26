@@ -31,7 +31,7 @@ import jakarta.enterprise.context.ApplicationScoped;
 You are a helpful travel assistant.
 Answer concisely and keep travel advice practical.
 """)
-public interface ChatAi {
+public interface ConversationalTravelAi {
 
     /**
      * Chat endpoint using default LangChain4j memory.

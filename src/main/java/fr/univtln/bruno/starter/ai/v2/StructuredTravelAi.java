@@ -59,7 +59,7 @@ OUTPUT FORMAT:
 
 If output is invalid JSON, it is incorrect.
 """)
-public interface MyAiService {
+public interface StructuredTravelAi {
 
     /**
      * Generates a structured travel plan using AI.

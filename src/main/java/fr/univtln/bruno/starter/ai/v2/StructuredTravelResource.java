@@ -30,14 +30,14 @@ import org.jboss.resteasy.reactive.RestQuery;
  */
 @Path("/api/v1/travel")
 @Produces(MediaType.APPLICATION_JSON)
-public class MyAIResource {
+public class StructuredTravelResource {
 
     /**
      * AI service injected by Quarkus CDI.
      * The implementation is generated automatically at runtime.
      */
     @Inject
-    MyAiService aiService;
+    StructuredTravelAi aiService;
 
     /**
      * Generates a structured travel plan using AI.

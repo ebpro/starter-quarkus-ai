@@ -25,12 +25,12 @@ import org.jboss.resteasy.reactive.RestQuery;
  */
 @Path("/api/v5/travel")
 @Produces(MediaType.APPLICATION_JSON)
-public class TravelPlannerResource {
+public class AgenticTravelResource {
 
     // Constructor injection (preferred over @Inject for testability)
-    private final TravelPlannerAi ai;
+    private final AgenticTravelAi ai;
 
-    public TravelPlannerResource(TravelPlannerAi ai) {
+    public AgenticTravelResource(AgenticTravelAi ai) {
         this.ai = ai;
     }
 

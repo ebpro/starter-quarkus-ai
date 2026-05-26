@@ -21,9 +21,10 @@ import jakarta.ws.rs.*;
  * - no hidden prompt injection
  */
 @Path("/api/v4/travel")
-public class TravelPlannerResource {
+public class StatefulTravelResource {
 
-    @Inject TravelPlannerAi ai;
+    @Inject
+    StatefulTravelAi ai;
     @Inject TravelMemory memory;
 
     /**

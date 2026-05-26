@@ -76,7 +76,7 @@ You are a helpful travel assistant.
 You generate travel itineraries in JSON format.
 Follow the JSON structure.
 """)
-public interface MyAiService {
+public interface BasicTravelAi {
 
     /**
      * Generates a travel plan in JSON format as raw text.
