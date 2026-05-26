@@ -1,0 +1,159 @@
+### =========================
+### V1 - RAW LLM OUTPUT (String / JSON text)
+### =========================
+
+### V1 - Paris travel plan (raw JSON text)
+GET http://localhost:8080/api/v1/travel?topic=Paris&days=3
+Accept: text/plain
+
+### V1 - Tokyo travel plan (raw JSON text)
+GET http://localhost:8080/api/v1/travel?topic=Tokyo&days=5
+Accept: text/plain
+
+###
+
+### V1 - Default days (should use 3)
+GET http://localhost:8080/api/v1/travel?topic=Rome
+Accept: text/plain
+
+###
+
+### V1 - Error case (missing topic → 400)
+GET http://localhost:8080/api/v1/travel?days=3
+Accept: text/plain
+
+
+### =========================
+### V2 - STRUCTURED OUTPUT (TravelPlan object)
+### =========================
+
+### V2 - Paris travel plan (structured object)
+GET http://localhost:8080/api/v1/travel?topic=Paris&days=3
+Accept: application/json
+
+###
+
+### V2 - Japan travel plan (structured object)
+GET http://localhost:8080/api/v1/travel?topic=Japan&days=7
+Accept: application/json
+
+###
+
+### V2 - Default days (structured object)
+GET http://localhost:8080/api/v1/travel?topic=Barcelona
+Accept: application/json
+
+###
+
+### V2 - Error case (missing topic → 400)
+GET http://localhost:8080/api/v1/travel?days=4
+Accept: application/json
+
+### =========================
+### V3 - CHAT WITH MEMORY (SOTA 2026)
+### =========================
+
+### V3 - Start conversation (memory init)
+POST http://localhost:8080/api/v3/chat/user1
+Content-Type: text/plain
+Accept: text/plain
+
+I want to travel to Japan
+
+### V3 - Follow-up (should remember Japan)
+POST http://localhost:8080/api/v3/chat/user1
+Content-Type: text/plain
+Accept: text/plain
+
+What food should I try?
+
+
+
+### 2) Same session → context should be remembered (Japan)
+POST http://localhost:8080/api/v3/chat/user1
+Content-Type: text/plain
+Accept: text/plain
+
+What are the best cities to visit in this country?
+
+###
+
+### 3) Same session → deeper contextual follow-up
+GET http://localhost:8080/api/v3/chat?sessionId=user1&message=What%20activities%20should%20I%20do%20there%3F
+Accept: text/plain
+
+###
+
+### 4) Same session → domain-specific follow-up (food)
+GET http://localhost:8080/api/v3/chat?sessionId=user1&message=What%20food%20should%20I%20try%3F
+Accept: text/plain
+
+###
+
+### 5) New independent session (user2 → no memory shared)
+GET http://localhost:8080/api/v3/chat?sessionId=user2&message=Hi%2C%20I%20want%20to%20visit%20Japan
+Accept: text/plain
+
+###
+
+### 6) user2 follow-up (only remembers its own context)
+GET http://localhost:8080/api/v3/chat?sessionId=user2&message=Give%20me%20a%203-day%20itinerary
+Accept: text/plain
+
+###
+
+### 7) Back to user1 → memory continues (Japan context still active)
+GET http://localhost:8080/api/v3/chat?sessionId=user1&message=Give%20me%20a%203-day%20plan%20based%20on%20what%20we%20discussed
+Accept: text/plain
+
+### =========================
+### V4 - FIRST REQUEST (create session memory)
+### =========================
+
+POST http://localhost:8080/api/v4/travel?sessionId=user1&days=3
+Content-Type: text/plain
+Accept: application/json
+
+I want to travel to Japan
+
+### =========================
+### V4 - MEMORY UPDATE TEST (overwrite state)
+### =========================
+
+POST http://localhost:8080/api/v4/travel?sessionId=user1&days=4
+Content-Type: text/plain
+Accept: application/json
+
+Extend my trip and add Osaka nightlife
+
+### =========================
+### V5 - AGENTIC TESTS
+### =========================
+
+### Tokyo (standard case)
+GET http://localhost:8080/api/v5/travel?destination=Tokyo&days=3
+Accept: application/json
+
+###
+
+### Paris (tool-heavy reasoning)
+GET http://localhost:8080/api/v5/travel?destination=Paris&days=4
+Accept: application/json
+
+###
+
+### Rome (cultural + food tools)
+GET http://localhost:8080/api/v5/travel?destination=Rome&days=2
+Accept: application/json
+
+###
+
+### Edge case city (fallback tool behavior)
+GET http://localhost:8080/api/v5/travel?destination=Atlantis&days=3
+Accept: application/json
+
+###
+
+### Stress test (consistency check)
+GET http://localhost:8080/api/v5/travel?destination=Tokyo&days=5
+Accept: application/json
